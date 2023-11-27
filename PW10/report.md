@@ -26,3 +26,17 @@ We can suppose that a model training on data with a big spread will therefore ha
 
 ## Notebook 9 : Comparison with last week
 ![](./assets/9-gradientboosting.png)
+
+Gradient Boosting, F1-score : 0.906, Accuracy : 0.912
+
+![](./assets/9-nn.png)
+
+Neural Network, F1-score : 0.849, Accuracy : 0.851
+
+Those two models give pretty different results. 
+The Gradient Boosting model has a higher weighted F1-score and accuracy but misclasses the REM class with the awake class more often.
+
+The Neural Network model has a lower weighted F1-score and accuracy but misclasses those two classes less often.
+
+More data pre-processing was required for the Neural Network model (MinMax scaling, one-hot encoding, subsampling to balance the classes) and outputs worse results than the Gradient Boosting model.
+I would still pick the Neural Network model as it is better at managing the dataset and has a more "balanced" confusion matrix.
