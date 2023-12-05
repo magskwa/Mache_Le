@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MachLe - PW11</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="machle---pw11">MachLe - PW11</h1>
+<p>Team : Magali Egger, Maxim Golay, Pascal Perrenoud</p>
+<h2 id="part-1">Part 1</h2>
+<h3 id="what-is-the-learning-algorithm-being-used-to-train-the-neural-networks">What is the learning algorithm being used to train the neural networks?</h3>
+<p>The learning algorithm is composed of a categorical_crossentropy loss function (decribed below) and a RMSprop optimizer. The RMSprop optimizer is an adaptive learning rate method. Its key features is to maintain a moving (discounted) average of the square of gradients and divide the gradient by the root of this average.</p>
+<h3 id="what-are-the-parameters-arguments-being-used-by-that-algorithm">What are the parameters (arguments) being used by that algorithm?</h3>
+<p>The parameters are the following:</p>
+<ul>
+<li>batch_size: 128</li>
+<li>epochs: 15</li>
+<li>optimizer: RMSprop</li>
+<li>loss: categorical_crossentropy</li>
+<li>metrics: accuracy</li>
+</ul>
+<h3 id="what-cost-function-is-being-used-please-give-the-equations-and-describe-eg-please-include-your-code-for-this-part">What cost function is being used? please, give the equation(s) and describe (e.g., please include your code for this part)</h3>
+<p>The cost function is the categorical_crossentropy. This function is used to calculate the loss between the predicted and the actual value. The categorical_crossentropy is the negative log-likelihood of the true class. It is defined as follows: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>o</mi><mi>s</mi><mi>s</mi><mo>=</mo><mo>−</mo><msubsup><mo>∑</mo><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow><mi>M</mi></msubsup><msub><mi>y</mi><mrow><mi>o</mi><mo separator="true">,</mo><mi>c</mi></mrow></msub><mi>log</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>p</mi><mrow><mi>o</mi><mo separator="true">,</mo><mi>c</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> Loss = - \sum_{c=1}^{M} y_{o,c} \log(p_{o,c}) </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span><span class="mord mathnormal">oss</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2809em;vertical-align:-0.2997em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9812em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> is the number of classes, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mrow><mi>o</mi><mo separator="true">,</mo><mi>c</mi></mrow></msub></mrow><annotation encoding="application/x-tex">y_{o,c}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> is a binary indicator of whether or not class <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> is the correct classification for observation <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>o</mi></mrow><annotation encoding="application/x-tex">o</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">o</span></span></span></span>, and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mrow><mi>o</mi><mo separator="true">,</mo><mi>c</mi></mrow></msub></mrow><annotation encoding="application/x-tex">p_{o,c}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> is the predicted probability observation <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>o</mi></mrow><annotation encoding="application/x-tex">o</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">o</span></span></span></span> is of class <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>.</p>
+<h3 id="how-did-you-create-the-training-validation-and-test-datasets">how did you create the training, validation and test datasets.</h3>
+<p>The training and test set are collected directly by importing the data from the datasets. The validation set is created by splitting the training set into a training and validation set. The validation set is the first 10000 images of the training set. The training set is the remaining images of the training set.</p>
+<h2 id="part-2">Part 2</h2>
+<h3 id="model-complexity-for-each-experiment-shallow-network-learning-from-raw-data-shallow-network-learning-from-features-and-cnn-select-a-neural-network-topology-and-describe-the-inputs-indicate-how-many-are-they-and-how-many-outputs">Model complexity: for each experiment (shallow network learning from raw data, shallow network learning from features and CNN), select a neural network topology and describe the inputs, indicate how many are they, and how many outputs.</h3>
+<p>raw data :</p>
+<p>The input of the model is a image of 28x28 pixels which is flatten to a vector of 784 elements. As we can see in the image above the output is a vector of 10 elements which represents the probability of each class.</p>
+<p>from features :</p>
+<p>The input of the model is a vector of 392 elements (height * width * n_orientations / (pix_p_cell * pix_p_cell)). The output is a vector of 10 elements which represents the probability of each class.</p>
+<p>CNN :</p>
+<p>The input of the model is a image of 28x28 pixels, which is flatten to a vector of 784 elements. The output is a vector of 10 elements which represents the probability of each class.</p>
+<h3 id="compute-the-number-of-weights-of-each-model-eg-how-many-weights-between-the-input-and-the-hidden-layer-how-many-weights-between-each-pair-of-layers-biases-etc-and-explain-how-do-you-get-to-the-total-number-of-weights">Compute the number of weights of each model (e.g., how many weights between the input and the hidden layer, how many weights between each pair of layers, biases, etc..) and explain how do you get to the total number of weights.</h3>
+<p>The number of weight of a layer is compute by multipling the number of neurons by the number of neurons of the previous layer (or by the number of input if it is the first layer) and adding the number of biases. The number of weights of the model is the sum of the number of weights of each layer.</p>
+<p>raw data :
+<img src="file:////home/mgy/gits/Mache_Le/PW11/image-1.png" alt="Alt text"></p>
+<ul>
+<li>Number of weights of layer 1 : 784 * 300 + 300 = 235500</li>
+<li>Number of weights of layer 2 : 300 * 10 + 10 = 3010</li>
+</ul>
+<p>Total number of weights : 238510</p>
+<p>from features :
+<img src="file:////home/mgy/gits/Mache_Le/PW11/image-2.png" alt="Alt text"></p>
+<ul>
+<li>Number of weights of layer 1 : 392 * 300 + 300 = 117900</li>
+<li>Number of weights of layer 2 : 300 * 10 + 10 = 3010</li>
+</ul>
+<p>Total number of weights : 120910</p>
+<p>CNN :</p>
+<p>For a CNN, the number of weight for a convolutional layer is the number of filters * (filter_height * filter_width * input_channels + 1). The number of weight for a max pooling layer is 0.</p>
+<p><img src="file:////home/mgy/gits/Mache_Le/PW11/image-3.png" alt="Alt text"></p>
+<ul>
+<li>Number of weights of layer 1 : 9 * (5 * 5 * 1 + 1) = 234</li>
+<li>Number of weights of layer 2 : 0</li>
+<li>Number of weights of layer 3 : 9 * (5 * 5 * 9 + 1) = 2034</li>
+<li>Number of weights of layer 4 : 0</li>
+<li>Number of weights of layer 5 : 16 * (3 * 3 * 9 + 16) = 1312</li>
+<li>Number of weights of layer 6 : 0</li>
+<li>Number of weights of layer 7 : 0</li>
+<li>Number of weights of layer 8 : 144 * 25 + 25 = 3625</li>
+<li>Number of weights of layer 9 : 25 * 10 + 10 = 260</li>
+</ul>
+<p>Total number of weights : 7465</p>
+<h2 id="part-3">Part 3</h2>
+<h3 id="do-the-deep-neural-networks-have-much-more-capacity-ie-do-they-have-more-weights-than-the-shallow-ones-explain-with-one-example">Do the deep neural networks have much more “capacity” (i.e., do they have more weights?) than the shallow ones? explain with one example</h3>
+<p>Deep neural networks have more layers than shallow neural networks. Each of those layers has a certain number of weights. Therefore, deep neural networks can have more weights than shallow neural networks. But that is not always the case. For example, the shallow neural network with raw data has more weights (238510) than the CNN (7465). This is explained by the fact that CNN has more layers but the number of weights of each layer is smaller than the number of weights of the layers of the shallow neural network. The capacity to learn and exploit complex relation inside the data is linked to the number of layers. As the number of weights is linked to the number of layers, we can say that deep neural networks tend to have more capacity than shallow neural networks.</p>
+<h2 id="part-4">Part 4</h2>
+<h3 id="test--every--notebook--for--at--least--three--different--meaningful--cases--eg--for--the-mlp--exploiting--raw--data--test--different--models--varying--the--number--of--hidden-neurons--for--the--feature-based--model--test--pix_p_cell--4--and--7--and--number--of-orientations--or--number--of--hidden--neurons--for--the--cnn--try--different--number--of-neurons-in-the-feed-forward-part-describe-the-model-and-present-the-performance-of-the-system-eg-plot-of-the-evolution-of-the-error-final-evaluation-scores--and--confusion--matrices--comment--the--differences--in--results--are--there-particular-digits-that-are-frequently-confused">Test  every  notebook  for  at  least  three  different  meaningful  cases  (e.g.,  for  the MLP  exploiting  raw  data,  test  different  models  varying  the  number  of  hidden neurons,  for  the  feature-based  model,  test  pix_p_cell  4  and  7,  and  number  of orientations  or  number  of  hidden  neurons,  for  the  CNN,  try  different  number  of neurons in the feed-forward part) describe the model and present the performance of the system (e.g., plot of the evolution of the error, final evaluation scores  and  confusion  matrices).  Comment  the  differences  in  results.  Are  there particular digits that are frequently confused?</h3>
+<h4 id="experiments-on-mlp-from-raw-data">Experiments on MLP from raw data</h4>
+<p>Our first experiment is to add an extra layer of 300 neurons. That is, we have 300x300 neurons in the hidden layer.</p>
+<p><img src="file:////home/mgy/gits/Mache_Le/PW11/raw_exp1.png" alt=""></p>
+<pre><code>FINAL RESULTS:
+Test score: 0.09962771087884903
+Test accuracy: 0.9804999828338623
+</code></pre>
+<p>This slightly improves the performance of the model, but negligeably so. Also, we see that the performance on the validation set jumps back up in later epochs, indicating that overfitting is taking place.</p>
+<p>Our next experiment as a follow up to this one is to reduce the number of neurons in the hidden layer to 100x50. The goal of it is to see if we can get similar performance to the initial experiment but reducing the number of total neurons used. We get the following results.</p>
+<p><img src="file:////home/mgy/gits/Mache_Le/PW11/raw_exp2.png" alt=""></p>
+<pre><code>FINAL RESULTS:
+Test score: 0.08882319182157516
+Test accuracy: 0.977400004863739
+</code></pre>
+<p>Overall, this slightly worsened the results we got compared to the previous experiment. We can attribute that to the fact that the network seems to still be able to learn, indicated by the fact that the training accuracy hasn't yet flatlined.</p>
+<p>This leads us to our final experiment: adding more epochs to hopefully obtain a better trained network.</p>
+<p><img src="file:////home/mgy/gits/Mache_Le/PW11/raw_exp3.png" alt=""></p>
+<pre><code>FINAL RESULTS:
+Test score: 0.1358925849199295
+Test accuracy: 0.9757000207901001
+</code></pre>
+<p>We clearly see that the validation sets starts gaining loss again, meaning overfitting is taking place. We conclude that our experiment is a failure and does not bring any improvements to the table.</p>
+<h4 id="experiments-on-mlp-from-hog">Experiments on MLP from HOG</h4>
+<p>We begin by running the notebook as-is. The result we get is worthy of attention.</p>
+<p><img src="file:////home/mgy/gits/Mache_Le/PW11/hog_exp1.png" alt=""></p>
+<pre><code>FINAL RESULTS:
+Test score: 0.07069864869117737
+Test accuracy: 0.9772999882698059
+</code></pre>
+<p>We notice that the learning process does look like it is not quite finished yet. We will try throughout the next two experiments to increase the performance of the model.</p>
+<p>We then go into the next experiment with the idea of increasing the number of epochs slightly. We set it to 10 and get the following results.</p>
+<p><img src="file:////home/mgy/gits/Mache_Le/PW11/hog_exp2.png" alt=""></p>
+<pre><code>FINAL RESULTS:
+Test score: 0.06509965658187866
+Test accuracy: 0.9793999791145325
+</code></pre>
+<p>We see that the results improved marginally. Calling this significant would be an overstatement, but numbers do show some improvement.</p>
+<p>As a last experiment, we will attempt to keep the number of epochs to 5, but double the number of orientations to 8. We then got the following results.</p>
+<p><img src="file:////home/mgy/gits/Mache_Le/PW11/hog_exp3.png" alt=""></p>
+<pre><code>FINAL RESULTS:
+Test score: 0.0739438384771347
+Test accuracy: 0.9768000245094299
+</code></pre>
+<p>We see a very small improvement compared to the base model, but not as much as the second experiment. Using a higher number of orientations seems to help with numbers often written using dashes slanted at 22.5 degree angles.</p>
+<h4 id="experiments-on-cnn">Experiments on CNN</h4>
+<p>We begin by trying the default values present in the notebook. This gives us a basis to start experimenting with.</p>
+<p><img src="file:////home/mgy/gits/Mache_Le/PW11/cnn_exp1.png" alt=""></p>
+<pre><code>FINAL RESULTS:
+Test score: 0.08287268877029419
+Test accuracy: 0.973800003528595
+</code></pre>
+<p>We get the following results, which surprisingly contains the worst test accuracy so far. We will attempt to bring it up to par with other methods in the following two experiments, starting with removing the last convulation and max-pooling layers. We also increase the number of neurons to 50 to see how the model reacts, and get the following results.</p>
+<p><img src="file:////home/mgy/gits/Mache_Le/PW11/cnn_exp2.png" alt=""></p>
+<pre><code>FINAL RESULTS:
+Test score: 0.04561679810285568
+Test accuracy: 0.9843000173568726
+</code></pre>
+<p>The results are much better, now on par with the previously evaluated models.</p>
+<p>For the last experiment, we change the structure of the model once again to further increase the number of neuron to 100.</p>
+<p><img src="file:////home/mgy/gits/Mache_Le/PW11/cnn_exp3.png" alt=""></p>
+<pre><code>FINAL RESULTS:
+Test score: 0.03727954253554344
+Test accuracy: 0.9869999885559082
+</code></pre>
+<p>We observe some marginal improvements compared to the last experiment. We conclude that the original 25 neurons where too little. We could add more epochs, as the model seems to not be done learning just yet.</p>
+
+        <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </body>
+    </html>
