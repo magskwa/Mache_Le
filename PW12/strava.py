@@ -37,7 +37,8 @@ class RunImport():
                 else:
                     average_speed = data['distance'].max() / data['time'].max()
                     if average_speed > self.average_speed_th:
-                        dataset = dataset.append(data)
+                        # dataset = dataset.append(data)
+                        dataset = pd.concat([dataset, data])
                         race_number += 1
                     else:
                         print('\nRace', race_number, 'ignored. Average speed:', average_speed)
@@ -51,7 +52,7 @@ class RunImport():
             print('Dataset statistics:')
             display(dataset.describe())
             print('\nDataset sample:')
-            display(dataset.head().append(dataset.tail()))
+            display(pd.concat([dataset.head(), dataset.tail()]))
             
             return dataset
         else:
@@ -78,7 +79,7 @@ class RunImport():
         for i in range(1, dataset.shape[0]):
             delta_e = dataset['elevation'].iloc[i] - dataset['elevation'].iloc[i-1]
             delta_d = dataset['distance'].iloc[i] - dataset['distance'].iloc[i-1]
-            if (delta_d == 0):
+            if delta_d == 0:
                 # set slope to 0 if distance is 0
                 slope_array.append(0.0)
             else:
